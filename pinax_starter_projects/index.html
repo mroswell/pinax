@@ -75,9 +75,6 @@
                     
                         <ul>
                         
-                            <li class="toctree-l2"><a href="#new-approach">New Approach</a></li>
-                            
-                        
                             <li class="toctree-l2"><a href="#getting-started">Getting Started</a></li>
                             
                         
@@ -200,12 +197,9 @@
 </div>
           <div role="main">
             <div class="section">
-              <h1 id="new-approach">New Approach</h1>
-<p>One of the things that has become a bit of a maintenance nightmare, especially as we add additional projects is keeping all the repos up to date with when most of the changes apply to all of them (e.g. upgrade Django version).</p>
-<p>The pinax/pinax-starter projects repo, which is available <a href="https://github.com/pinax/pinax-starter-projects/blob/master/README.md">here</a>, serves as an experiment as a new way of managing this.</p>
-<p>We will leverage <code>git</code> and branching to manage the hierarchy. The <code>master</code> branch will remain purely for the README and perhaps other ancillary files. Each project template will get a new branch and will branch from its natural parent. The README will be maintained with a full list of the branches and thus the starter projects in the repo. We may at some point add remotes to push each branch to its own repo where the code will live at master, but that will be treated purely as mirrors of this repo.</p>
-<h1 id="getting-started">Getting Started</h1>
-<p>All starter projects share a common method for getting started. It involves creating a <code>virtualenv</code>, installing Django, and running the `startproject command with a url to the template, followed by a few commands within your new project.</p>
+              <h1 id="getting-started">Getting Started</h1>
+<p>The pinax/pinax-starter projects repo is available <a href="https://github.com/pinax/pinax-starter-projects/blob/master/README.md">here</a>.</p>
+<p>All starter projects share a common method for getting started. It involves creating a virtual environment, installing Django, and running the <code>startproject</code> command with a URL to the template, followed by a few commands within your new project.</p>
 <pre><code>pip install virtualenv
 virtualenv mysiteenv
 source mysiteenv/bin/activate
@@ -220,24 +214,24 @@ pip install -r requirements.txt
 </code></pre>
 
 <h1 id="development">Development</h1>
-<p>If you want to develop your own starter projects here is the workflow you should follow:</p>
+<p>If you want to develop your own starter projects, here is the workflow you should follow:</p>
 <ol>
 <li>Start with the branch you want to base your new project on.</li>
-<li><code>git co -b &lt;name&gt;</code></li>
-<li>Do the work on your project template.</li>
+<li><code>git checkout -b &lt;name&gt;</code></li>
+<li>Work on your project template.</li>
 <li>Test your project template by running <code>django-admin.py startproject --template=pinax-starter-projects test1 -n webpack.config.js</code></li>
 <li>Once you are satisified with your testing, commit.</li>
-<li><code>git co master</code> and then update the <code>README.md</code> file with details about your new project.</li>
+<li><code>git checkout master</code> and then update the <code>README.md</code> file with details about your new project.</li>
 <li>Update all descendent branches:</li>
 </ol>
 <pre><code>(
- git co zero &amp;&amp; git merge master --no-edit
- git co account &amp;&amp; git merge zero --no-edit
- git co blog &amp;&amp; git merge zero --no-edit
- git co static &amp;&amp; git merge zero --no-edit
- git co documents &amp;&amp; git merge account --no-edit
- git co wiki &amp;&amp; git merge account --no-edit
- git co team-wiki &amp;&amp; git merge wiki --no-edit
+ git checkout zero &amp;&amp; git merge master --no-edit
+ git checkout account &amp;&amp; git merge zero --no-edit
+ git checkout blog &amp;&amp; git merge zero --no-edit
+ git checkout static &amp;&amp; git merge zero --no-edit
+ git checkout documents &amp;&amp; git merge account --no-edit
+ git checkout wiki &amp;&amp; git merge account --no-edit
+ git checkout team-wiki &amp;&amp; git merge wiki --no-edit
 )
 git push
 </code></pre>
